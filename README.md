@@ -4,5 +4,5 @@ We are learning python one project at a time, I'll have descriptions of everythi
 
 # # CarGame - Project 1
 
-# # # - day - 1 
+day - 1 
         generated the game canvas, and added a sprite with full functionality.
