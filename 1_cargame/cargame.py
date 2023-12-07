@@ -1,5 +1,4 @@
 #run game after you put the entire code
-
 import pygame
 
 ## let computer now you're run a pygame app
