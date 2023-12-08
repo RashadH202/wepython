@@ -12,3 +12,15 @@ Summary -
         This application is very basic use of the pygame library and python.
 
         it shows how to use pygame functions, an how  to use basic loop statements
+
+
+# # CarGame2 - Project 1
+
+day - 1 
+        generated most of the required sprites. 
+day - 2 
+        finishing touches, such as closing the app, and ensure every function can be ran via the game screen.
+Summary -
+        This project uses classes, functions, variables, and pygame library.
+
+        

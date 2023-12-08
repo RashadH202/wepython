@@ -110,7 +110,7 @@ while running:
 
             if event.key == K_LEFT and player.rect.center[0] > left_lane:
                 player.rect.x -=100
-                screen.fill(0)
+                
             elif event.key == K_RIGHT and player.rect.center[0] < right_lane:
                 player.rect.x += 100
 
