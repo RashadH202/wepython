@@ -1,0 +1,29 @@
+/* App.css */
+/* ... (previous styles) */
+
+.auth-button {
+  background-color: #1db954;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.auth-button:hover {
+  background-color: #168f3d;
+}
+
+.redirect-button {
+  background-color: #ffcc00;
+  color: #333;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.redirect-button:hover {
+  background-color: #e0b700;
+}
