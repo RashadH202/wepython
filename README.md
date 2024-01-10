@@ -14,7 +14,7 @@ Summary -
         it shows how to use pygame functions, an how  to use basic loop statements
 
 
-# # CarGame2 - Project 1
+# # CarGame2 - Project 2
 
 day - 1 
         generated most of the required sprites. 
@@ -23,4 +23,10 @@ day - 2
 Summary -
         This project uses classes, functions, variables, and pygame library.
 
-        
+# # reactFlask - Project 3
+
+day - 1 
+        simple project using react front end, and flask back end.
+Summary -
+        This project uses classes, functions, variables, and pygame library.
+
