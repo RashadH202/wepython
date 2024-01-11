@@ -42,4 +42,4 @@ Summary -
 day - 1 
         simple calculator project, focuing on taking in user input, and handling it using math and built in functions. 
 Summary -
-        This project uses variables, and.
+        This project uses variables.
