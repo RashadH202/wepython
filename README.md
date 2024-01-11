@@ -23,10 +23,23 @@ day - 2
 Summary -
         This project uses classes, functions, variables, and pygame library.
 
-# # reactFlask - Project 3
+# # runescape reactFlask - Project 3
 
 day - 1 
         simple project using react front end, and flask back end.
 Summary -
-        This project uses classes, functions, variables, and pygame library.
+        This project uses classes, functions, variables, and runescapewiki api
 
+# # spotify reactFlask - project 4
+
+day - 1 
+        simple project using react front end, and flask back end.
+Summary -
+        This project uses classes, functions, variables and spotify api.
+
+# # tip Calculator - project 5
+
+day - 1 
+        simple calculator project, focuing on taking in user input, and handling it using math and built in functions. 
+Summary -
+        This project uses variables, and.
