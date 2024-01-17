@@ -104,7 +104,7 @@ A simple Flask web application that uses the Spotify API to interact with a user
    -- SPOTIPY_REDIRECT_URI=your_redirect_uri
 
 
-# # tip Calculator - project 5
+
 
 # Tip Calculator
 
@@ -116,7 +116,6 @@ A simple Python script that calculates the total bill amount, including tip, and
 
    ```bash
    python tip_calculator.py
-# Tip Calculator
 
 A simple Python script that calculates the total bill amount, including tip, and splits it among the specified number of people.
 
@@ -257,7 +256,7 @@ This Python script generates a random password based on user-defined criteria, i
 
 ## Example
 
-```python
+
 Welcome to the PyPassword Generator!
 
 How many letters would you like in your password? 8
@@ -300,7 +299,7 @@ This Python script allows you to play the Hangman game. A random word is selecte
 ## Example
 
 
-```python
+
 Welcome to Hangman!
 
 _ _ _ _ _ _
@@ -349,7 +348,7 @@ This Python script implements the Caesar Cipher algorithm to either encrypt or d
 
 ## Example
 
-```python
+
 Welcome to the Caesar Cipher!
 
 Type 'encode' to encrypt, type 'decode' to decrypt:
@@ -392,7 +391,7 @@ This Python script allows users to conduct a silent auction by collecting bids f
 
 ## Example
 
-```python
+
 Welcome to the Silent Auction!
 
 What is your name?:
@@ -446,7 +445,7 @@ This Python calculator script provides a user-friendly interface for performing 
 
 ## Example
 
-```python
+
 Calculator
 
 What's the first number?: 5
@@ -499,7 +498,7 @@ This Python script allows users to play Blackjack in the console. The game inclu
 
 ## Example
 
-```python
+
 Blackjack Game
 
 Do you want to play a game of blackjack? Type 'y' or 'n': y
@@ -551,7 +550,7 @@ This Python script implements a simple Number Guessing Game. The program generat
 
 ## Example
 
-```python
+
 Number Guessing Game
 
 Welcome to the Number Guessing Game!
@@ -601,7 +600,6 @@ This Python script implements the Higher Lower Game. The game displays two rando
 
 ## Example
 
-```python
 Higher Lower Game
 
 Compare A: John Doe, a famous actor, from USA
