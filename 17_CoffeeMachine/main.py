@@ -79,6 +79,11 @@ class CoffeeMachine:
         while True:
             choice = input("what would you like? (expresso, Latte, or Cappuccino)").lower()
             print("invalid choice. Please Choose a valid option!")
+            if choice in {"expresso", "latte", "cappuccino", "off", "report"}:
+                return choice
+            else: 
+                print("invalid choice, please choice again!")
+
 
 """Instance and run the cofee machine!"""
 coffee_machine = CoffeeMachine()
