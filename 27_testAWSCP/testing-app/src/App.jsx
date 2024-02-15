@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AddQuestion from './AddQuestion';
-import SearchQuestions from './SearchQuestions';
+import './App.css';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+
 import QuestionList from './QuestionList';
+import NavBar from './NavBar';
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -48,17 +50,31 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <h1>Question Bank</h1>
-      <AddQuestion fetchQuestions={fetchQuestions} />
-      <SearchQuestions handleSearchInputChange={handleSearchInputChange} searchQuery={searchQuery} />
-      <QuestionList
-        filteredQuestions={filteredQuestions}
-        fetchQuestions={fetchQuestions}
-        deleteQuestion={deleteQuestion}
-        updateQuestion={updateQuestion}
-      />
-    </div>
+    <Container fluid>
+      <Row>
+        <Col>
+        <NavBar 
+        handleSearchInputChange={handleSearchInputChange} 
+        searchQuery={searchQuery}/>
+        </Col>
+      </Row>
+      <Row>
+{/* 
+        <Col>
+          <SearchQuestions handleSearchInputChange={handleSearchInputChange} searchQuery={searchQuery} />
+        </Col> */}
+      </Row>
+      <Row>
+        <Col>
+          <QuestionList
+            filteredQuestions={filteredQuestions}
+            fetchQuestions={fetchQuestions}
+            deleteQuestion={deleteQuestion}
+            updateQuestion={updateQuestion}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

@@ -1,100 +1,142 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { Form, Button, ListGroup } from 'react-bootstrap';
 
 const QuestionList = ({ filteredQuestions, fetchQuestions }) => {
+    const [editModeQuestions, setEditModeQuestions] = useState(new Set()); // State variable for questions in edit mode
 
-  const deleteQuestion = async (questionId) => {
-    try {
-      await axios.delete(`http://localhost:5000/questions/${questionId}`);
-      fetchQuestions(); // Fetch updated questions after deleting one
-    } catch (error) {
-      console.error('Error deleting question:', error);
-    }
-  };
+    const deleteQuestion = async (questionId) => {
+        try {
+            await axios.delete(`http://localhost:5000/questions/${questionId}`);
+            fetchQuestions(); // Fetch updated questions after deleting one
+        } catch (error) {
+            console.error('Error deleting question:', error);
+        }
+    };
 
-  const updateQuestion = async (updatedQuestion) => {
-    try {
-      await axios.put(`http://localhost:5000/questions/${updatedQuestion.id}`, updatedQuestion);
-      fetchQuestions(); // Fetch updated questions after updating one
-    } catch (error) {
-      console.error('Error updating question:', error);
-    }
-  };
+    const updateQuestion = async (updatedQuestion) => {
+        try {
+            await axios.put(`http://localhost:5000/questions/${updatedQuestion.id}`, updatedQuestion);
+            fetchQuestions(); // Fetch updated questions after updating one
+        } catch (error) {
+            console.error('Error updating question:', error);
+        }
+    };
 
-  const handleChoiceChange = (e, index, question) => {
-    const choices = [...question.choices];
-    choices[index] = e.target.value;
-    updateQuestion({ ...question, choices });
-  };
+    const handleChoiceChange = (e, index, question) => {
+        const choices = [...question.choices];
+        choices[index] = e.target.value;
+        updateQuestion({ ...question, choices });
+    };
 
-  const addChoiceInput = async (question) => {
-    const choices = [...question.choices, '']; // Add an empty choice
-    try {
-      await axios.put(`http://localhost:5000/questions/${question.id}`, { ...question, choices });
-      fetchQuestions(); // Fetch updated questions after adding choice
-    } catch (error) {
-      console.error('Error adding choice:', error);
-    }
-  };
+    const addChoiceInput = async (question) => {
+        const choices = [...question.choices, '']; // Add an empty choice
+        try {
+            await axios.put(`http://localhost:5000/questions/${question.id}`, { ...question, choices });
+            fetchQuestions(); // Fetch updated questions after adding choice
+        } catch (error) {
+            console.error('Error adding choice:', error);
+        }
+    };
 
-  const removeChoiceInput = async (index, question) => {
-    const choices = [...question.choices.slice(0, index), ...question.choices.slice(index + 1)];
-    try {
-      await axios.put(`http://localhost:5000/questions/${question.id}`, { ...question, choices });
-      fetchQuestions(); // Fetch updated questions after removing choice
-    } catch (error) {
-      console.error('Error removing choice:', error);
-    }
-  };
+    const removeChoiceInput = async (index, question) => {
+        const choices = [...question.choices.slice(0, index), ...question.choices.slice(index + 1)];
+        try {
+            await axios.put(`http://localhost:5000/questions/${question.id}`, { ...question, choices });
+            fetchQuestions(); // Fetch updated questions after removing choice
+        } catch (error) {
+            console.error('Error removing choice:', error);
+        }
+    };
 
-  const handleUpdateQuestion = async (question) => {
-    try {
-      await axios.put(`http://localhost:5000/questions/${question.id}`, question);
-      fetchQuestions(); // Fetch updated questions after updating
-    } catch (error) {
-      console.error('Error updating question:', error);
-    }
-  };
+    const handleUpdateQuestion = async (question) => {
+        try {
+            await axios.put(`http://localhost:5000/questions/${question.id}`, question);
+            fetchQuestions(); // Fetch updated questions after updating
+            setEditModeQuestions((prevEditModeQuestions) => {
+                const updatedEditModeQuestions = new Set(prevEditModeQuestions);
+                updatedEditModeQuestions.delete(question.id);
+                return updatedEditModeQuestions;
+            });
+        } catch (error) {
+            console.error('Error updating question:', error);
+        }
+    };
 
-  return (
-    <div>
-      <h2>Questions</h2>
-      <ul>
-        {filteredQuestions.map((question) => (
-          <li key={question.id}>
-            <strong>Question:</strong> 
-            <input
-              type="text"
-              value={question.question}
-              onChange={(e) => updateQuestion({ ...question, question: e.target.value })}
-            />
-            <br />
-            <strong>Choices:</strong> 
-            {question.choices.map((choice, index) => (
-              <div key={index}>
-                <input
-                  type="text"
-                  value={choice}
-                  onChange={(e) => handleChoiceChange(e, index, question)}
-                />
-                <button onClick={() => removeChoiceInput(index, question)}>Remove</button>
-              </div>
-            ))}
-            <button onClick={() => addChoiceInput(question)}>Add Choice</button>
-            <br />
-            <strong>Correct Answer:</strong> 
-            <input
-              type="text"
-              value={question.correct_answer}
-              onChange={(e) => updateQuestion({ ...question, correct_answer: e.target.value })}
-            />
-            <button onClick={() => deleteQuestion(question.id)}>Delete</button>
-            <button onClick={() => handleUpdateQuestion(question)}>Update</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    const toggleEditMode = (questionId) => {
+        setEditModeQuestions((prevEditModeQuestions) => {
+            const updatedEditModeQuestions = new Set(prevEditModeQuestions);
+            if (updatedEditModeQuestions.has(questionId)) {
+                updatedEditModeQuestions.delete(questionId);
+            } else {
+                updatedEditModeQuestions.add(questionId);
+            }
+            return updatedEditModeQuestions;
+        });
+    };
+
+    return (
+        <div className="question-list-container">
+            <h2>Questions</h2>
+            <ListGroup className="question-list">
+                {filteredQuestions.map((question) => (
+                    <ListGroup.Item key={question.id} className="question-item">
+                        <Form>
+                            <Form.Group controlId={`question-${question.id}`}>
+                                <Form.Label><strong>Question:</strong></Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={question.question}
+                                    onChange={(e) => updateQuestion({ ...question, question: e.target.value })}
+                                    readOnly={!editModeQuestions.has(question.id)}
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId={`choices-${question.id}`}>
+                                <Form.Label><strong>Choices:</strong></Form.Label>
+                                {question.choices.map((choice, index) => (
+                                    <div key={index} className="choice-container d-flex align-items-center">
+                                        <Form.Control
+                                            type="text"
+                                            value={choice}
+                                            onChange={(e) => handleChoiceChange(e, index, question)}
+                                            readOnly={!editModeQuestions.has(question.id)}
+                                        />
+                                        {editModeQuestions.has(question.id) && (
+                                            <Button variant="danger" onClick={() => removeChoiceInput(index, question)}>Remove</Button>
+                                        )}
+                                    </div>
+                                ))}
+                                {editModeQuestions.has(question.id) && (
+                                    <Button variant="success" onClick={() => addChoiceInput(question)}>Add Choice</Button>
+                                )}
+                            </Form.Group>
+
+                            <Form.Group controlId={`correct-answer-${question.id}`}>
+                                <Form.Label><strong>Correct Answer:</strong></Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    value={question.correct_answer}
+                                    onChange={(e) => updateQuestion({ ...question, correct_answer: e.target.value })}
+                                    readOnly={!editModeQuestions.has(question.id)}
+                                />
+                            </Form.Group>
+
+                            {editModeQuestions.has(question.id) && (
+                                <>
+                                    <Button variant="danger" onClick={() => deleteQuestion(question.id)}>Delete</Button>
+                                    <Button variant="primary" onClick={() => handleUpdateQuestion(question)}>Update</Button>
+                                </>
+                            )}
+                        </Form>
+                        <Button variant="info" onClick={() => toggleEditMode(question.id)}>
+                            {editModeQuestions.has(question.id) ? 'Finish Editing' : 'Edit'}
+                        </Button>
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+        </div>
+    );
 };
 
 export default QuestionList;

@@ -1,15 +1,19 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 const SearchQuestions = ({ handleSearchInputChange, searchQuery }) => {
   return (
-    <div>
-      <h2>Search</h2>
-      <input
-        type="text"
-        placeholder="Search questions..."
-        value={searchQuery}
-        onChange={handleSearchInputChange}
-      />
+    <div className='search-container-comp'>
+     
+      <Form.Group controlId="search">
+        <Form.Label>Search questions...</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Search questions..."
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+      </Form.Group>
     </div>
   );
 };

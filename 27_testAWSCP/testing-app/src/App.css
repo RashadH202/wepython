@@ -1,38 +1,149 @@
+/* App container */
 .App {
-  text-align: center;
+  padding: 1.4vw;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Heading styles */
+h1 {
+  font-size: 1.75vw;
+  margin-bottom: 1.05vw;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* AddQuestion component styles */
+.add-question-container {
+  margin-bottom: 1.05vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.add-question-input {
+  margin-bottom: 0.7vw;
+}
+
+.add-question-button {
+  margin-top: 0.7vw;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.35vw;
+  padding: 0.56vw 1.05vw;
+  cursor: pointer;
+}
+
+.add-question-button:hover {
+  background-color: #0056b3;
+}
+
+/* SearchQuestions component styles */
+.search-input {
+  width: 85%;
+  padding: 1.05vw;
+  border: 0.07vw solid #ccc;
+  border-radius: 0.35vw;
+  margin-bottom: 1.05vw;
+}
+
+/* QuestionList component styles */
+.question-container {
+  max-height: 56vh;
+  overflow-y: auto;
+}
+.question-list.list-group{
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  max-height:85vh;
+}
+.question-item {
+  border: 0.07vw solid #ccc;
+  border-radius: 0.35vw;
+  padding: 1.05vw;
+  margin-bottom: 0.7vw;
+  background-color: #f9f9f9;
+}
+
+.question-item input[type="text"] {
+  width: 85%;
+  padding: 1.05vw;
+  border: 0.07vw solid #ccc;
+  border-radius: 0.35vw;
+  margin-bottom: 0.7vw;
+  resize: vertical;
+  min-height: 3.5vw;
+}
+
+.choice-item input[type="text"] {
+  width: 85%;
+  padding: 1.05vw;
+  border: 0.07vw solid #ccc;
+  border-radius: 0.35vw;
+  margin-bottom: 0.7vw;
+  margin-right: 1.05vw;
+}
+
+.choice-buttons button {
+  padding: 0.84vw 1.4vw;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.35vw;
+  cursor: pointer;
+}
+
+.choice-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.question-item.list-group-item {
+  margin-bottom: 5vh;
+  outline: black;
+}
+
+/* Button styles */
+button {
+  padding: 0.84vw 1.4vw;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.35vw;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.navbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 1.4vw;
+  max-height: 7vh;
 }
 
-.App-link {
-  color: #61dafb;
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4vw;
+  max-height: 7vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-container > * {
+  margin-right: 3.5vw;
+}
+
+.search.form-control {
+  margin-left: 0.35vw;
+}
+
+.search-container-comp {
+  height: 12vh;
+  margin-left: 2.1vw;
+  margin-right: 2.1vw;
+}
+
+.numberofquestions_nav {
+  color: #fff;
 }

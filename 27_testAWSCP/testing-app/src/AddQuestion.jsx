@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import './App.css'; // Import your CSS file
 
 const AddQuestion = ({ fetchQuestions }) => {
   const [newQuestion, setNewQuestion] = useState({
@@ -36,35 +38,53 @@ const AddQuestion = ({ fetchQuestions }) => {
   };
 
   return (
-    <div>
+    <Container className="add-question-container"> {/* Apply container styles */}
       <h2>Add New Question</h2>
-      Question<input
-        type="text"
-        placeholder="Question"
-        value={newQuestion.question}
-        onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
-      />
-      {newQuestion.choices.map((choice, index) => (
-        <div key={index}>
-            Choice:
-          <input
+      <Form>
+        <Form.Group controlId="question" className="add-question-input"> {/* Apply input styles */}
+          <Form.Label>Question</Form.Label>
+          <Form.Control
             type="text"
-            placeholder={`Choice ${index + 1}`}
-            value={choice}
-            onChange={(e) => handleInputChange(e, index)}
+            placeholder="Question"
+            value={newQuestion.question}
+            onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
           />
-          <button onClick={() => removeChoiceInput(index)}>Remove</button>
-        </div>
-      ))}
-      <button onClick={addChoiceInput}>Add Choice</button>
-      <input
-        type="text"
-        placeholder="Correct Answer"
-        value={newQuestion.correct_answer}
-        onChange={(e) => setNewQuestion({ ...newQuestion, correct_answer: e.target.value })}
-      />
-      <button onClick={addQuestion}>Add Question</button>
-    </div>
+        </Form.Group>
+        {newQuestion.choices.map((choice, index) => (
+          <Row key={index} className="choice-item">
+            <Col className="add-question-input"> {/* Apply input styles */}
+              <Form.Group controlId={`choice-${index}`}>
+                <Form.Label>Choice {index + 1}</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={`Choice ${index + 1}`}
+                  value={choice}
+                  onChange={(e) => handleInputChange(e, index)}
+                />
+              </Form.Group>
+            </Col>
+            <Col className="choice-buttons"> {/* Apply button styles */}
+              <Button variant="danger" onClick={() => removeChoiceInput(index)}>Remove</Button>
+            </Col>
+          </Row>
+        ))}
+        <Button variant="secondary" onClick={addChoiceInput} className="add-question-button"> {/* Apply button styles */}
+          Add Choice
+        </Button>
+        <Form.Group controlId="correctAnswer" className="add-question-input"> {/* Apply input styles */}
+          <Form.Label>Correct Answer</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Correct Answer"
+            value={newQuestion.correct_answer}
+            onChange={(e) => setNewQuestion({ ...newQuestion, correct_answer: e.target.value })}
+          />
+        </Form.Group>
+        <Button variant="primary" onClick={addQuestion} className="add-question-button"> {/* Apply button styles */}
+          Add Question
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
