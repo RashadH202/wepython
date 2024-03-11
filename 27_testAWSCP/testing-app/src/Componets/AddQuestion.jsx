@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import './App.css'; // Import your CSS file
+
 
 const AddQuestion = ({ fetchQuestions }) => {
   const [newQuestion, setNewQuestion] = useState({

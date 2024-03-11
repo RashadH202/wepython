@@ -112,15 +112,16 @@ const QuestionList = ({ filteredQuestions, fetchQuestions }) => {
                                 )}
                             </Form.Group>
 
-                            <Form.Group controlId={`correct-answer-${question.id}`}>
-                                <Form.Label><strong>Correct Answer:</strong></Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    value={question.correct_answer}
-                                    onChange={(e) => updateQuestion({ ...question, correct_answer: e.target.value })}
-                                    readOnly={!editModeQuestions.has(question.id)}
-                                />
-                            </Form.Group>
+                            {editModeQuestions.has(question.id) && (
+                                <Form.Group controlId={`correct-answer-${question.id}`}>
+                                    <Form.Label><strong>Correct Answer:</strong></Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        value={question.correct_answer}
+                                        onChange={(e) => updateQuestion({ ...question, correct_answer: e.target.value })}
+                                    />
+                                </Form.Group>
+                            )}
 
                             {editModeQuestions.has(question.id) && (
                                 <>
@@ -128,10 +129,13 @@ const QuestionList = ({ filteredQuestions, fetchQuestions }) => {
                                     <Button variant="primary" onClick={() => handleUpdateQuestion(question)}>Update</Button>
                                 </>
                             )}
+
+                            {!editModeQuestions.has(question.id) && (
+                                <Button variant="info" onClick={() => toggleEditMode(question.id)}>
+                                    {editModeQuestions.has(question.id) ? 'Finish Editing' : 'Edit'}
+                                </Button>
+                            )}
                         </Form>
-                        <Button variant="info" onClick={() => toggleEditMode(question.id)}>
-                            {editModeQuestions.has(question.id) ? 'Finish Editing' : 'Edit'}
-                        </Button>
                     </ListGroup.Item>
                 ))}
             </ListGroup>
